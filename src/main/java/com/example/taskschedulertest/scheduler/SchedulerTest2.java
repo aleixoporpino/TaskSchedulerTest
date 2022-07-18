@@ -1,5 +1,7 @@
 package com.example.taskschedulertest.scheduler;
 
+import com.example.taskschedulertest.Utils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
+@Slf4j
 public class SchedulerTest2 extends SchedulerRunner {
 
     private final TaskScheduler secondTaskScheduler;
@@ -17,13 +20,15 @@ public class SchedulerTest2 extends SchedulerRunner {
 
     public void scheduled3() {
         secondTaskScheduler.schedule(() -> {
-            System.out.println(new Date() + " " + Thread.currentThread().getName() + ": scheduled3");
+            log.info(new Date() + " " + Thread.currentThread().getName() + ": scheduled3");
+            Utils.sleep();
         }, new CronTrigger("* * * * * *"));
     }
 
     public void scheduled4() {
         secondTaskScheduler.schedule(() -> {
-            System.out.println(new Date() + " " + Thread.currentThread().getName() + ": scheduled4");
+            log.info(new Date() + " " + Thread.currentThread().getName() + ": scheduled4");
+            Utils.sleep();
         }, new CronTrigger("* * * * * *"));
     }
 
